@@ -2,10 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "leetcode101.exe"
-		},
-		{
-			"path" : "leetcode101.pdb"
+			"path" : "leetcode101"
 		}
 	],
 	"backtrace" : 1,
@@ -71,16 +68,12 @@
 			{
 				"fragment" : "",
 				"role" : "flags"
-			},
-			{
-				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
-				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"
 	},
 	"name" : "leetcode101",
-	"nameOnDisk" : "leetcode101.exe",
+	"nameOnDisk" : "leetcode101",
 	"paths" : 
 	{
 		"build" : ".",
