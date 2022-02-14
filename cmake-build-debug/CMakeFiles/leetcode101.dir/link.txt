@@ -1,1 +1,0 @@
-/usr/bin/c++ -g CMakeFiles/leetcode101.dir/greedy_algorithm/605.cpp.o -o leetcode101 

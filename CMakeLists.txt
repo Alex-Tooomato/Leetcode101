@@ -4,4 +4,4 @@ project(leetcode101)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(leetcode101
-        greedy_algorithm/605.cpp)
+        double_pointer/76.cpp)
