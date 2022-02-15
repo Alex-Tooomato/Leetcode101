@@ -129,29 +129,29 @@ leetcode101/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/leetcode101.dir/build.make CMakeFiles/leetcode101.dir/build
 .PHONY : leetcode101/fast
 
-greedy_algorithm/605.o: greedy_algorithm/605.cpp.o
-.PHONY : greedy_algorithm/605.o
+double_pointer/76.o: double_pointer/76.cpp.o
+.PHONY : double_pointer/76.o
 
 # target to build an object file
-greedy_algorithm/605.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/leetcode101.dir/build.make CMakeFiles/leetcode101.dir/greedy_algorithm/605.cpp.o
-.PHONY : greedy_algorithm/605.cpp.o
+double_pointer/76.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/leetcode101.dir/build.make CMakeFiles/leetcode101.dir/double_pointer/76.cpp.o
+.PHONY : double_pointer/76.cpp.o
 
-greedy_algorithm/605.i: greedy_algorithm/605.cpp.i
-.PHONY : greedy_algorithm/605.i
+double_pointer/76.i: double_pointer/76.cpp.i
+.PHONY : double_pointer/76.i
 
 # target to preprocess a source file
-greedy_algorithm/605.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/leetcode101.dir/build.make CMakeFiles/leetcode101.dir/greedy_algorithm/605.cpp.i
-.PHONY : greedy_algorithm/605.cpp.i
+double_pointer/76.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/leetcode101.dir/build.make CMakeFiles/leetcode101.dir/double_pointer/76.cpp.i
+.PHONY : double_pointer/76.cpp.i
 
-greedy_algorithm/605.s: greedy_algorithm/605.cpp.s
-.PHONY : greedy_algorithm/605.s
+double_pointer/76.s: double_pointer/76.cpp.s
+.PHONY : double_pointer/76.s
 
 # target to generate assembly for a file
-greedy_algorithm/605.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/leetcode101.dir/build.make CMakeFiles/leetcode101.dir/greedy_algorithm/605.cpp.s
-.PHONY : greedy_algorithm/605.cpp.s
+double_pointer/76.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/leetcode101.dir/build.make CMakeFiles/leetcode101.dir/double_pointer/76.cpp.s
+.PHONY : double_pointer/76.cpp.s
 
 # Help Target
 help:
@@ -162,9 +162,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... leetcode101"
-	@echo "... greedy_algorithm/605.o"
-	@echo "... greedy_algorithm/605.i"
-	@echo "... greedy_algorithm/605.s"
+	@echo "... double_pointer/76.o"
+	@echo "... double_pointer/76.i"
+	@echo "... double_pointer/76.s"
 .PHONY : help
 
 

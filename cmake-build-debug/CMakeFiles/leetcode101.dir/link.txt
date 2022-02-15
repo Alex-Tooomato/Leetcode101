@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/leetcode101.dir/double_pointer/76.cpp.o -o leetcode101 
