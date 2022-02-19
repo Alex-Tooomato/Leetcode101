@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/leetcode101.dir/double_pointer/76.cpp.o"
-  "CMakeFiles/leetcode101.dir/double_pointer/76.cpp.o.d"
+  "CMakeFiles/leetcode101.dir/sort/sort_method.cpp.o"
+  "CMakeFiles/leetcode101.dir/sort/sort_method.cpp.o.d"
   "leetcode101"
   "leetcode101.pdb"
 )

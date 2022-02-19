@@ -129,29 +129,29 @@ leetcode101/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/leetcode101.dir/build.make CMakeFiles/leetcode101.dir/build
 .PHONY : leetcode101/fast
 
-double_pointer/76.o: double_pointer/76.cpp.o
-.PHONY : double_pointer/76.o
+sort/sort_method.o: sort/sort_method.cpp.o
+.PHONY : sort/sort_method.o
 
 # target to build an object file
-double_pointer/76.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/leetcode101.dir/build.make CMakeFiles/leetcode101.dir/double_pointer/76.cpp.o
-.PHONY : double_pointer/76.cpp.o
+sort/sort_method.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/leetcode101.dir/build.make CMakeFiles/leetcode101.dir/sort/sort_method.cpp.o
+.PHONY : sort/sort_method.cpp.o
 
-double_pointer/76.i: double_pointer/76.cpp.i
-.PHONY : double_pointer/76.i
+sort/sort_method.i: sort/sort_method.cpp.i
+.PHONY : sort/sort_method.i
 
 # target to preprocess a source file
-double_pointer/76.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/leetcode101.dir/build.make CMakeFiles/leetcode101.dir/double_pointer/76.cpp.i
-.PHONY : double_pointer/76.cpp.i
+sort/sort_method.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/leetcode101.dir/build.make CMakeFiles/leetcode101.dir/sort/sort_method.cpp.i
+.PHONY : sort/sort_method.cpp.i
 
-double_pointer/76.s: double_pointer/76.cpp.s
-.PHONY : double_pointer/76.s
+sort/sort_method.s: sort/sort_method.cpp.s
+.PHONY : sort/sort_method.s
 
 # target to generate assembly for a file
-double_pointer/76.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/leetcode101.dir/build.make CMakeFiles/leetcode101.dir/double_pointer/76.cpp.s
-.PHONY : double_pointer/76.cpp.s
+sort/sort_method.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/leetcode101.dir/build.make CMakeFiles/leetcode101.dir/sort/sort_method.cpp.s
+.PHONY : sort/sort_method.cpp.s
 
 # Help Target
 help:
@@ -162,9 +162,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... leetcode101"
-	@echo "... double_pointer/76.o"
-	@echo "... double_pointer/76.i"
-	@echo "... double_pointer/76.s"
+	@echo "... sort/sort_method.o"
+	@echo "... sort/sort_method.i"
+	@echo "... sort/sort_method.s"
 .PHONY : help
 
 
