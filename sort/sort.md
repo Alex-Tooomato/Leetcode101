@@ -120,37 +120,181 @@ void selection_sort(vector<int> &nums,int n){
 using namespace std;
 class Solution {
 public:
-    int findKthLargest(vector<int>& nums, int k) {
-    int l=0,r=nums.size()-1,target=nums.size()-k;
-    while(l<r){
-        int mid=quickSelection(nums,l,r);
-        if(mid==target){
-            return nums[target];
+        //桶排序
+    vector<int> topKFrequent(vector<int>& nums, int k){
+        unordered_map<int,int>counts;
+        int max_count=0;
+        for(auto & num:nums){
+            max_count=max(max_count,++counts[num]);
         }
-        if(mid<target){
-            l=mid+1;
-        } else{
-            r=mid-1;
+        vector<vector<int>>buckets(max_count+1);
+        for(auto& p:counts){
+            buckets[p.second].push_back(p.first);
+        }
+        vector<int> ans;
+        for(int i=max_count;i>=0&&ans.size()<k;--i){
+            for(auto & n:buckets[i]){
+                ans.push_back(n);
+                if(ans.size()==k){
+                    break;
+                }
+            }
+        }
+        return ans;
+    }
+    //快速选择
+    void qsort(vector<pair<int, int>>& v, int start, int end, vector<int>& ret, int k) {
+        int picked = rand() % (end - start + 1) + start;
+        swap(v[picked], v[start]);
+
+        int pivot = v[start].second;
+        int index = start;
+        for (int i = start + 1; i <= end; i++) {
+            if (v[i].second >= pivot) {
+                swap(v[index + 1], v[i]);
+                index++;
+            }
+        }
+        swap(v[start], v[index]);
+
+        if (k <= index - start) {
+            qsort(v, start, index - 1, ret, k);
+        } else {
+            for (int i = start; i <= index; i++) {
+                ret.push_back(v[i].first);
+            }
+            if (k > index - start + 1) {
+                qsort(v, index + 1, end, ret, k - (index - start + 1));
+            }
         }
     }
-        return nums[l];
-    }
-    int quickSelection(vector<int> &nums,int l,int r){//返回的位置左边比该位置的值小，右边比该位置的值大，因此此位置为排完序后所在的位置。
-        int i=l+1,j=r;
-        while(true){
-            while(i<r&&nums[i]<=nums[l]){
-                ++i;
-            }
-            while(l<j&&nums[j]>=nums[l]){//退出循环时nums[j]<nums[l]
-                --j;
-            }
-            if(i>=j){
-                break;
-            }
-            swap(nums[i],nums[j]);
+
+    vector<int> topKFrequent1(vector<int>& nums, int k){
+        unordered_map<int,int> occurences;
+        for(auto&v:nums) {
+            ++occurences[v];
         }
-        swap(nums[l],nums[j]);
-        return j;
+        vector<pair<int,int>> values;
+        for(auto&kv:occurences){
+            values.push_back(kv);
+        }
+        vector<int>ret;
+        qsort(values,0,values.size()-1,ret,k);
+        return ret;
+    }
+    //最小堆
+    static bool cmp(pair<int,int>&x,pair<int,int>&y){
+        return x.second>y.second;
+    }
+    vector<int> topKFrequent2(vector<int>& nums, int k) {
+        unordered_map<int,int> occurences;
+        for(auto&v:nums) {
+            ++occurences[v];
+        }
+        priority_queue<pair<int,int>,vector<pair<int,int>>, decltype(&cmp)> q(cmp);//第三个		参数传入的是Compare的类型，decltype(&cmp)代表的是cmp的类型，是一个函数指针类型，
+        // 如果使用不带参数的构造函数，则用来比较的实际函数将不明，会是一个野指针，能通过编译，但运行看天意。
+        for(auto&[num,count]:occurences){
+            if(q.size()==k){
+                if(count>q.top().second){
+                    q.pop();
+                    q.emplace(num,count);
+                }
+            }else{
+                q.emplace(num,count);
+            }
+        }
+        vector<int> ret;
+        while(!q.empty()){
+            ret.emplace_back(q.top().first);
+            q.pop();
+        }
+        return ret;
+    }
+};
+```
+
+## 3. 练习
+
+### 451. 根据字符出现频率排序（中等）
+
+#### [根据字符出现频率排序](https://leetcode-cn.com/problems/sort-characters-by-frequency/)
+
+```c++
+#include <iostream>
+#include <unordered_map>
+#include <vector>
+using namespace std;
+
+class Solution {
+public:
+    string frequencySort(string s) {
+        unordered_map<char,int> counts;
+        int max_count=0;
+        for(auto & num:s){
+            max_count=max(max_count,++counts[num]);
+        }
+        vector<vector<int>> buckets(max_count+1);
+        for(auto & p:counts){
+            buckets[p.second].push_back(p.first);
+        }
+        string ans;
+        for(int i=max_count;i>0;--i){
+                for(auto & num:buckets[i]){
+                    for(int j=i;j>0;--j){
+                        ans.push_back(num);
+                    }
+            }
+        }
+        return ans;
+    }
+};
+```
+
+## 75. 颜色分类（中等）
+
+#### [颜色分类](https://leetcode-cn.com/problems/sort-colors/)
+
+```c++
+#include <vector>
+using namespace std;
+class Solution {
+public:
+    //单指针
+    void sortColors(vector<int>& nums) {
+        int n=nums.size();
+        int ptr=0;
+        for(int i=0;i<n;++i){
+            if(nums[i]==0){
+                swap(nums[ptr],nums[i]);
+                ++ptr;
+            }
+        }
+        for(int i=ptr;i<n;++i){
+            if(nums[i]==1){
+                swap(nums[ptr],nums[i]);
+                ++ptr;
+            }
+        }
+
+    }
+    //双指针
+    void sortColors2(vector<int>& nums) {
+        int n=nums.size();
+        int p0=0;
+        int p1=0;
+        for (int i=0;i<n;++i){
+            if(nums[i]==1){
+                swap(nums[p1],nums[i]);
+                ++p1;
+            }else  if(nums[i]==0){
+                swap(nums[p0],nums[i]);
+                if(p0<p1){
+                    swap(nums[i],nums[p1]);
+                }
+                ++p0;
+                ++p1;
+            }
+        }
     }
 };
 ```
