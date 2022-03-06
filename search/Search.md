@@ -588,3 +588,61 @@ public:
     }
 };
 ```
+
+### 257. 二叉树的所有路径
+
+#### [二叉树的所有路径](https://leetcode-cn.com/problems/binary-tree-paths/)
+
+```c++
+#include <string>
+#include <vector>
+using namespace std;
+// Definition for a binary tree node.
+ struct TreeNode {
+      int val;
+      TreeNode *left;
+      TreeNode *right;
+      TreeNode() : val(0), left(nullptr), right(nullptr) {}
+      TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+      TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+  };
+
+class Solution {
+public:
+    vector<string> binaryTreePaths(TreeNode* root) {
+    vector<string> ans;
+        backtracking(root,ans,"");
+        return ans;
+    }
+    void backtracking(TreeNode * root,vector<string> &ans,string s){
+        if(root!= nullptr){
+            s+= to_string(root->val);
+            if(root->left== nullptr&&root->right== nullptr){
+                ans.push_back(s);
+            } else{
+                s+="->";
+                backtracking(root->left,ans,s);
+                backtracking(root->right,ans,s);//用栈实现了回溯
+                //由于string每次传入不一定是一个字符，所以不方便用pop_back来实现回溯。
+            }
+        }
+
+    }
+};
+//硬要用的话可以
+        if(root!= nullptr){
+            s+= to_string(root->val);
+            if(root->left== nullptr&&root->right== nullptr){
+                ans.push_back(s);
+            } else{
+                s+="->";
+                backtracking(root->left,ans,s);
+                backtracking(root->right,ans,s);
+                s.pop_back();
+                s.pop_back();
+            }
+            for(int i=0;i<to_string(root->val).size();++i){
+                s.pop_back();
+            }
+        }
+```
