@@ -646,3 +646,319 @@ public:
             }
         }
 ```
+
+### 47. 全排列Ⅱ
+
+#### [全排列 II](https://leetcode-cn.com/problems/permutations-ii/)
+
+```c++
+#include <vector>
+#include <algorithm>
+using namespace std;
+class Solution {
+    vector<bool> vis;
+public:
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        vector<vector<int>> ans;
+        vector<int> perm;
+        vis.resize(nums.size());
+        sort(nums.begin(),nums.end());
+        backtracking(ans,nums,0,perm);
+        return ans;
+    }
+    void backtracking(vector<vector<int>> &ans,vector<int>&nums,int idx,vector<int> &perm){
+        if(idx==nums.size()){
+            ans.emplace_back(perm);
+            return;
+        }
+        for(int i=0;i<nums.size();++i){
+            if(vis[i]||(i>0&&nums[i]==nums[i-1]&&!vis[i-1])){
+                continue;
+            }
+            perm.emplace_back(nums[i]);
+            vis[i]= true;
+            backtracking(ans,nums,idx+1,perm);
+            vis[i]= false;
+            perm.pop_back();
+        }
+    }
+};
+```
+
+### 40. 组合总和III
+
+#### [组合总和 II](https://leetcode-cn.com/problems/combination-sum-ii/)
+
+```c++
+#include <vector>
+#include <algorithm>
+#include <iostream>
+using namespace std;
+class Solution {
+public:
+    //同上一题的去重方法
+    void backtracking(vector<int>& candidates,int target,int i,int n,int sum,vector<bool> vis,vector<int> res,vector<vector<int>> &ans){
+        if(i==n){return;}
+        for(int j=i;j<n;++j){
+            if(vis[j]||(j>0&&candidates[j]==candidates[j-1]&&!vis[j-1])){
+                continue;
+            }
+            sum+=candidates[j];
+            res.emplace_back(candidates[j]);
+            vis[j]=true;
+            if(sum==target){
+                ans.emplace_back(res);
+                return;
+            }else if(sum>target){
+                return;
+            }else{
+                backtracking(candidates,target,j+1,n,sum,vis,res,ans);
+            }
+            sum-=candidates[j];
+            vis[j]=false;
+            res.pop_back();
+        }
+        return;
+    }
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        vector<vector<int>> ans;
+        vector<int> res;
+        int sum;
+        vector<bool> vis;
+        vis.resize(candidates.size(), false);
+        int n=candidates.size();
+        sort(candidates.begin(),candidates.end());
+        backtracking(candidates,target,0,n,sum,vis,res,ans);
+        return ans;
+    }
+    //官方解答，用freq记录相同数出现的次数，将相同的数一起处理，处理相同的数出现不同次数的情况
+    private:
+    vector<pair<int, int>> freq;
+    vector<vector<int>> ans;
+    vector<int> sequence;
+
+public:
+    void dfs(int pos, int rest) {
+        if (rest == 0) {
+            ans.push_back(sequence);
+            return;
+        }
+        if (pos == freq.size() || rest < freq[pos].first) {
+            return;
+        }
+
+        dfs(pos + 1, rest);
+
+        int most = min(rest / freq[pos].first, freq[pos].second);
+        for (int i = 1; i <= most; ++i) {
+            sequence.push_back(freq[pos].first);
+            dfs(pos + 1, rest - i * freq[pos].first);
+        }
+        for (int i = 1; i <= most; ++i) {
+            sequence.pop_back();
+        }
+    }
+
+    vector<vector<int>> combinationSum2_2(vector<int>& candidates, int target) {
+        sort(candidates.begin(), candidates.end());
+        for (int num: candidates) {
+            if (freq.empty() || num != freq.back().first) {
+                freq.emplace_back(num, 1);
+            } else {
+                ++freq.back().second;
+            }
+        }
+        dfs(0, target);
+        return ans;
+    }
+
+};
+```
+
+### 37. 解数独(困难)
+
+#### [解数独](https://leetcode-cn.com/problems/sudoku-solver/)
+
+#### 方法一：递归
+
+```c++
+#include <vector>
+#include <string.h>
+using namespace std;
+class Solution {
+private:
+    bool line[9][9];
+    bool colum[9][9];
+    bool block[3][3][9];
+    vector<pair<int,int>> spaces;
+    bool valid = false;
+
+public:
+    void solveSudoku(vector<vector<char>>& board) {
+        memset(line, false,sizeof (line));
+        memset(colum, false,sizeof(colum));
+        memset(block, false, sizeof(block));
+        for(int i=0;i<9;++i){
+            for(int j=0;j<9;++j){
+                if(board[i][j]=='.'){
+                    spaces.emplace_back(i,j);
+                }else{
+                    int num=board[i][j]-'0'-1;
+                    line[i][num]= true;
+                    colum[j][num]= true;
+                    block[i/3][j/3][num]=true;
+                }
+            }
+        }
+        backtracking(board,0);
+    }
+    void backtracking(vector<vector<char>>& board,int pos){
+        if(pos== spaces.size()){
+            valid= true;
+            return;
+        }
+        auto [i,j]=spaces[pos];
+        for(int k=0;k<9&&!valid;++k){
+            if(!line[i][k]&&!colum[j][k]&&!block[i/3][j/3][k]){
+                line[i][k]=colum[j][k]=block[i/3][j/3][k]= true;
+                board[i][j]= k+'0'+1;
+                backtracking(board,pos+1);
+                line[i][k]=colum[j][k]=block[i/3][j/3][k]= false;
+            }
+        }
+    }
+};
+```
+
+#### 方法二：位运算优化
+
+使用位运算符将数组压缩成一个数。
+
+具体地，数$b$的二进制表示的第$i$位（从低到高，最低位为第0位）为1,当且仅当数字$i+1$已经出现过。例如当$b$的二进制表示为$(011000100)_2$时，就表示数字$3,7,8$已经出现过。
+
+位运算有一些基础的使用技巧。下面列举了所有在代码中使用到的技巧：
+
+- 对于第 $i$ 行第 $j$列的位置，$line[i]\ column[j] \ block[i/3][j/3]$中第$k$位为$1$，表示该位置不能填入数字$k+1$（因为已经出现过），其中$|$表示按位或运算。如果我们对这个值进行∼按位取反，那么第$k$位为$1$就表示该位置可以填入数字$k+1$，我们就可以通过寻找$1$来进行枚举。由于在进行按位取反运算后，这个数的高位也全部变成了$1$，而这是我们不应当枚举到的，因此我们需要将这个数和$(111111111)_2=(1FF)_{16}$进行按位与运算$\&$，将所有无关的位置为；
+- 我们可以使用按位异或运算$\wedge$，将第$i$位从$0$变为$1$，或从$1$变为$0$。具体地，与数$1<<i$进行按位异或运算即可，其中$<<$表示左移运算；
+- 我们可以用$b\&(-b)$ 得到$b$二进制表示中最低位的$1$，这是因为$(-b)$在计算机中以补码的形式存储，它等于$∼b+1$。$b$如果和$∼b$进行按位与运算，那么会得到$0$，但是当$∼b$增加$1$之后，最低位的连续的$1$都变为$0$，而最低位的$0$变为$1$，对应到$b$中即为最低位的$1$，因此当$b$和$∼b+1$进行按位与运算时，只有最低位的$1$会被保留；
+- 当我们得到这个最低位的$1$时，我们可以通过一些语言自带的函数得到这个最低位的$1$究竟是第几位(即$i$值)，具体可以参考下面的代码；
+- 我们可以用$b$和最低位的$1$进行按位异或运算，就可以将其从$b$中去除，这样就可以枚举下一个$1$。同样地，我们也可以用$b$和$b-1$进行按位与运算达到相同的效果。
+
+```c++
+class Solution {
+private:
+    int line[9];
+    int column[9];
+    int block[3][3];
+    bool valid;
+    vector<pair<int, int>> spaces;
+
+public:
+    void flip(int i, int j, int digit) {
+        line[i] ^= (1 << digit);//digit+1被使用过，因此将1左移digit位并与原数异或
+        column[j] ^= (1 << digit);
+        block[i / 3][j / 3] ^= (1 << digit);
+    }
+
+    void dfs(vector<vector<char>>& board, int pos) {
+        if (pos == spaces.size()) {
+            valid = true;
+            return;
+        }
+
+        auto [i, j] = spaces[pos];
+        int mask = ~(line[i] | column[j] | block[i / 3][j / 3]) & 0x1ff;//mask的bit位表示可填入的数
+        for (; mask && !valid; mask &= (mask - 1)) {
+            int digitMask = mask & (-mask);//取得位数最小的1的位置，如011010位数最小的1为000010
+            int digit = __builtin_ctz(digitMask);//返回digitMask二进制下末尾 0 的个数
+            flip(i, j, digit);
+            board[i][j] = digit + '0' + 1;
+            dfs(board, pos + 1);
+            flip(i, j, digit);
+        }
+    }
+
+    void solveSudoku(vector<vector<char>>& board) {
+        memset(line, 0, sizeof(line));
+        memset(column, 0, sizeof(column));
+        memset(block, 0, sizeof(block));
+        valid = false;
+
+        for (int i = 0; i < 9; ++i) {
+            for (int j = 0; j < 9; ++j) {
+                if (board[i][j] == '.') {
+                    spaces.emplace_back(i, j);
+                }
+                else {
+                    int digit = board[i][j] - '0' - 1;
+                    flip(i, j, digit);
+                }
+            }
+        }
+
+        dfs(board, 0);
+    }
+};
+
+```
+
+### 301. 删除无效的括号
+
+#### [删除无效的括号](https://leetcode-cn.com/problems/remove-invalid-parentheses/)
+
+广度优先
+
+```c++
+#include <string>
+#include <unordered_set>
+#include <vector>
+using namespace std;
+class Solution {
+public:
+    bool isValid(string s){
+        int count=0;
+        for(char & c:s){
+            if(c=='('){
+                ++count;
+            } else if(c==')'){
+                --count;
+                if(count<0){
+                    return false;
+                }
+            }
+        }
+        return count == 0;
+    }
+    vector<string> removeInvalidParentheses(string s) {
+    vector<string> ans;
+    unordered_set<string> curr_set;
+
+    curr_set.insert(s);
+
+    while(true){
+        for(auto& p:curr_set){
+            if(isValid(p)){
+                ans.emplace_back(p);
+            }
+        }
+        if(ans.size()>0){
+            return ans;
+        }
+        unordered_set<string> next_set;
+        for(auto& str:curr_set){
+            for(int i=0;i<str.size();++i){
+                if(i>0&&str[i]==str[i-1]){
+                    continue;
+                }
+                if(str[i]=='('||str[i]==')'){
+                    next_set.insert(str.substr(0,i)+str.substr(i+1,str.size()));
+                }
+            }
+        }
+        curr_set=next_set;
+    }
+
+    }
+};
+```
+
