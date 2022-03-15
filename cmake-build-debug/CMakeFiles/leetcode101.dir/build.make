@@ -69,28 +69,28 @@ include CMakeFiles/leetcode101.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/leetcode101.dir/flags.make
 
-CMakeFiles/leetcode101.dir/sort/sort_method.cpp.o: CMakeFiles/leetcode101.dir/flags.make
-CMakeFiles/leetcode101.dir/sort/sort_method.cpp.o: ../sort/sort_method.cpp
-CMakeFiles/leetcode101.dir/sort/sort_method.cpp.o: CMakeFiles/leetcode101.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pc/leetcode/leetcode101/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/leetcode101.dir/sort/sort_method.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/leetcode101.dir/sort/sort_method.cpp.o -MF CMakeFiles/leetcode101.dir/sort/sort_method.cpp.o.d -o CMakeFiles/leetcode101.dir/sort/sort_method.cpp.o -c /home/pc/leetcode/leetcode101/sort/sort_method.cpp
+CMakeFiles/leetcode101.dir/dynamic_programming/542.cpp.o: CMakeFiles/leetcode101.dir/flags.make
+CMakeFiles/leetcode101.dir/dynamic_programming/542.cpp.o: ../dynamic_programming/542.cpp
+CMakeFiles/leetcode101.dir/dynamic_programming/542.cpp.o: CMakeFiles/leetcode101.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pc/leetcode/leetcode101/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/leetcode101.dir/dynamic_programming/542.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/leetcode101.dir/dynamic_programming/542.cpp.o -MF CMakeFiles/leetcode101.dir/dynamic_programming/542.cpp.o.d -o CMakeFiles/leetcode101.dir/dynamic_programming/542.cpp.o -c /home/pc/leetcode/leetcode101/dynamic_programming/542.cpp
 
-CMakeFiles/leetcode101.dir/sort/sort_method.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/leetcode101.dir/sort/sort_method.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pc/leetcode/leetcode101/sort/sort_method.cpp > CMakeFiles/leetcode101.dir/sort/sort_method.cpp.i
+CMakeFiles/leetcode101.dir/dynamic_programming/542.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/leetcode101.dir/dynamic_programming/542.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pc/leetcode/leetcode101/dynamic_programming/542.cpp > CMakeFiles/leetcode101.dir/dynamic_programming/542.cpp.i
 
-CMakeFiles/leetcode101.dir/sort/sort_method.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/leetcode101.dir/sort/sort_method.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pc/leetcode/leetcode101/sort/sort_method.cpp -o CMakeFiles/leetcode101.dir/sort/sort_method.cpp.s
+CMakeFiles/leetcode101.dir/dynamic_programming/542.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/leetcode101.dir/dynamic_programming/542.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pc/leetcode/leetcode101/dynamic_programming/542.cpp -o CMakeFiles/leetcode101.dir/dynamic_programming/542.cpp.s
 
 # Object files for target leetcode101
 leetcode101_OBJECTS = \
-"CMakeFiles/leetcode101.dir/sort/sort_method.cpp.o"
+"CMakeFiles/leetcode101.dir/dynamic_programming/542.cpp.o"
 
 # External object files for target leetcode101
 leetcode101_EXTERNAL_OBJECTS =
 
-leetcode101: CMakeFiles/leetcode101.dir/sort/sort_method.cpp.o
+leetcode101: CMakeFiles/leetcode101.dir/dynamic_programming/542.cpp.o
 leetcode101: CMakeFiles/leetcode101.dir/build.make
 leetcode101: CMakeFiles/leetcode101.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pc/leetcode/leetcode101/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable leetcode101"

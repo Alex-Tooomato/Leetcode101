@@ -129,29 +129,29 @@ leetcode101/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/leetcode101.dir/build.make CMakeFiles/leetcode101.dir/build
 .PHONY : leetcode101/fast
 
-sort/sort_method.o: sort/sort_method.cpp.o
-.PHONY : sort/sort_method.o
+dynamic_programming/542.o: dynamic_programming/542.cpp.o
+.PHONY : dynamic_programming/542.o
 
 # target to build an object file
-sort/sort_method.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/leetcode101.dir/build.make CMakeFiles/leetcode101.dir/sort/sort_method.cpp.o
-.PHONY : sort/sort_method.cpp.o
+dynamic_programming/542.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/leetcode101.dir/build.make CMakeFiles/leetcode101.dir/dynamic_programming/542.cpp.o
+.PHONY : dynamic_programming/542.cpp.o
 
-sort/sort_method.i: sort/sort_method.cpp.i
-.PHONY : sort/sort_method.i
+dynamic_programming/542.i: dynamic_programming/542.cpp.i
+.PHONY : dynamic_programming/542.i
 
 # target to preprocess a source file
-sort/sort_method.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/leetcode101.dir/build.make CMakeFiles/leetcode101.dir/sort/sort_method.cpp.i
-.PHONY : sort/sort_method.cpp.i
+dynamic_programming/542.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/leetcode101.dir/build.make CMakeFiles/leetcode101.dir/dynamic_programming/542.cpp.i
+.PHONY : dynamic_programming/542.cpp.i
 
-sort/sort_method.s: sort/sort_method.cpp.s
-.PHONY : sort/sort_method.s
+dynamic_programming/542.s: dynamic_programming/542.cpp.s
+.PHONY : dynamic_programming/542.s
 
 # target to generate assembly for a file
-sort/sort_method.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/leetcode101.dir/build.make CMakeFiles/leetcode101.dir/sort/sort_method.cpp.s
-.PHONY : sort/sort_method.cpp.s
+dynamic_programming/542.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/leetcode101.dir/build.make CMakeFiles/leetcode101.dir/dynamic_programming/542.cpp.s
+.PHONY : dynamic_programming/542.cpp.s
 
 # Help Target
 help:
@@ -162,9 +162,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... leetcode101"
-	@echo "... sort/sort_method.o"
-	@echo "... sort/sort_method.i"
-	@echo "... sort/sort_method.s"
+	@echo "... dynamic_programming/542.o"
+	@echo "... dynamic_programming/542.i"
+	@echo "... dynamic_programming/542.s"
 .PHONY : help
 
 

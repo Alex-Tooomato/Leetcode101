@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/pc/leetcode/leetcode101/sort/sort_method.cpp" "CMakeFiles/leetcode101.dir/sort/sort_method.cpp.o" "gcc" "CMakeFiles/leetcode101.dir/sort/sort_method.cpp.o.d"
+  "/home/pc/leetcode/leetcode101/dynamic_programming/542.cpp" "CMakeFiles/leetcode101.dir/dynamic_programming/542.cpp.o" "gcc" "CMakeFiles/leetcode101.dir/dynamic_programming/542.cpp.o.d"
   )
 
 # Targets to which this target links.
